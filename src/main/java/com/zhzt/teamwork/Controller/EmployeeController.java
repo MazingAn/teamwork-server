@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
+import java.util.List;
 
 @RestController
 @RequestMapping("/employee")
@@ -26,6 +27,11 @@ public class EmployeeController {
                                 @RequestParam(defaultValue = "10") int size){
         Pageable pageable = PageRequest.of(page, size);
         return employeeRepository.findAll(pageable);
+    }
+
+    @GetMapping("/all")
+    Iterable<Employee> getEmployees(){
+        return employeeRepository.findAll();
     }
 
     /** get one project by id
